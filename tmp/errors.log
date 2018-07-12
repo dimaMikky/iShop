@@ -532,3 +532,105 @@
 --------------
 [2018-07-11 23:41:41] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
 --------------
+[2018-07-12 21:54:31] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:54:33] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:54:45] Error Message: Class 'app\controllers\Product' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 22
+--------------
+[2018-07-12 21:55:52] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:56:02] Error Message: Контроллер app\controllers\CategoryController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-12 21:56:04] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:56:07] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:56:11] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:56:16] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:58:20] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:58:27] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 21:58:47] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:00:55] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:02:04] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:02:10] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:02:48] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:21] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:26] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:29] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:34] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:43] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:03:46] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:10:15] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:10:18] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:10:29] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:10:38] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:10:43] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:14:25] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:14:51] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:19:21] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:35:41] Error Message: Class 'app\controllers\Breadcrumbs' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 18
+--------------
+[2018-07-12 22:36:06] Error Message: Class 'app\models\Breadcrumbs' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 19
+--------------
+[2018-07-12 22:36:25] Error Message: Class 'app\models\Breadcrumbs' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 19
+--------------
+[2018-07-12 22:36:58] Error Message: Class 'app\models\Breadcrumbs' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 19
+--------------
+[2018-07-12 22:39:09] Error Message: Class 'app\models\Breadcrumbs' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\ProductController.php | Line: 19
+--------------
+[2018-07-12 22:39:47] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:40:44] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:40:56] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:49:23] Error Message: syntax error, unexpected '}' | File: C:\OSPanel\domains\ishop.loc\app\models\Breadcrumbs.php | Line: 14
+--------------
+[2018-07-12 22:49:34] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:50:32] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:51:01] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 22:59:13] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:00:51] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:00:55] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:00:58] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:01:02] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:01:05] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:01:08] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:01:12] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-12 23:01:20] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
