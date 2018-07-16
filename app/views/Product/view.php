@@ -55,11 +55,12 @@
 							<div class="clearfix"> </div>
 							</div>
 							
-                            <h5 class="item_price" id="base-price"><?= $curr['symbol_left'] ?><?=$product->price * $curr['value']?><?= $curr['symbol_right'] ?></h5>
+                            <h5 class="item_price" id="base-price" data-base="<?=$product->price * $curr['value'];?>"><?= $curr['symbol_left'] ?><?=$product->price * $curr['value']?><?= $curr['symbol_right'] ?></h5>
                             <?php if($product->old_price): ?>
                                     <span><del><?= $curr['symbol_left'] ?><?=$product->old_price * $curr['value']?><?= $curr['symbol_right'] ?></del></span>
                             <?php endif ?>
                             <p><?= $product->content; ?></p>
+							<?php if($mods): ?>
 							<div class="available">
 								<ul>
 									<li>Color
@@ -73,7 +74,8 @@
 									</li>
 								<div class="clearfix"> </div>
 							</ul>
-						</div>
+							</div>
+							<?php endif ?>
 							<ul class="tag-men">
 								<li><span>Category</span>
 								<span>: <a href="category/<?=$cats[$product->category_id]['alias'];?>"><?=$cats[$product->category_id]['title'];?></a></span></li>

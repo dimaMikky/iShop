@@ -299,7 +299,7 @@ span.simpleCart_total {
 	height: 0;
 	left: 13px;
 	right: 0;
-	top: 36px;
+	top: 27px;
 	background: #73B6E1;
 	overflow: hidden;
 	opacity: 0;
@@ -3066,18 +3066,20 @@ ul.tag-men {
 }
 /*--media-quaries-end-here--*/
 
-/* New styles */
-.product-one > .product-left {
-    margin-bottom: 20px;
+/* new styles */
+.product-one > .product-left{
+	margin-bottom: 20px;
 }
 
-.quantity {
-    margin-top: 3em;
-    margin-right: 10px;
-    float: left;
+.quantity{
+	margin-top: 3em;
+	margin-right: 10px;
+	float: left;
 }
 
-.quantity input {
-    margin-top: -2em;
-    height: 3em;
+#cart table img{
+	height: 50px;
+}
+.del-item{
+    cursor:pointer;
 }
