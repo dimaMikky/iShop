@@ -844,3 +844,5 @@
 --------------
 [2018-07-14 22:54:05] Error Message: syntax error, unexpected 'public' (T_PUBLIC) | File: C:\OSPanel\domains\ishop.loc\app\models\Cart.php | Line: 45
 --------------
+[2018-07-16 09:51:02] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
