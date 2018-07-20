@@ -884,3 +884,19 @@
 [2018-07-16 22:13:42] Error Message: syntax error, unexpected 'return' (T_RETURN) | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\libs\Pagination.php | Line: 52
 >>>>>>> 9e5080ca90b61cd3a991a9f813aaa6d5174ee9d6
 --------------
+[2018-07-20 10:22:49] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 10:26:54] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 10:28:09] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 10:31:57] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 11:36:44] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 12:35:00] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 14:07:53] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-20 14:18:30] Error Message: Контроллер app\controllers\DsfdsController не найден | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 36
+--------------

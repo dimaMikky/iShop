@@ -1430,8 +1430,8 @@ a.mask {
 .account-bottom {
     margin-top: 2.2em;
 }
-.account-left input[type="text"],.account-left input[type="password"] {
-    width: 90%;
+.account-left input[type="text"],.account-left input[type="password"],.account-left input[type="email"] {
+    /*width: 90%;*/
     margin: 0px;
     color: #000;
     background: none;
@@ -3066,6 +3066,24 @@ ul.tag-men {
 }
 /*--media-quaries-end-here--*/
 
+/* new styles */
+.product-one > .product-left{
+	margin-bottom: 20px;
+}
+
+.quantity{
+	margin-top: 3em;
+	margin-right: 10px;
+	float: left;
+}
+
+#cart table img{
+	height: 50px;
+}
+
+.del-item{
+	cursor: pointer;
+}
 
 /*search*/
 span.twitter-typeahead .tt-menu,
@@ -3164,20 +3182,22 @@ span.twitter-typeahead {
 }
 /*search*/
 
-/* new styles */
-.product-one > .product-left{
-	margin-bottom: 20px;
+.drop > .btn-group > a{
+	color: #fff;
+	cursor: pointer;
+	position: relative;
+	top: -2px;
 }
-
-.quantity{
-	margin-top: 3em;
-	margin-right: 10px;
-	float: left;
+form .has-success .form-control{
+	border-color: green;
 }
-
-#cart table img{
-	height: 50px;
+form .has-error .form-control{
+	border-color: red;
 }
-.del-item{
-    cursor:pointer;
+.has-error, .has-success{
+	position: relative;
+}
+.form-control-feedback {
+	right: 10px;
+	top: 25px;
 }

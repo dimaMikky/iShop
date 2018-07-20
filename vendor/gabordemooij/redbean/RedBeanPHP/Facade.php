@@ -225,13 +225,13 @@ class Facade
 	 *
 	 * @return ToolBox
 	 */
-	public static function setup( $dsn = NULL, $username = NULL, $password = NULL, $frozen = FALSE, $partialBeans = FALSE )
+	public static function setup( $dsn = NULL, $username = NULL, $password = NULL, $frozen = FALSE )
 	{
 		if ( is_null( $dsn ) ) {
 			$dsn = 'sqlite:/' . sys_get_temp_dir() . '/red.db';
 		}
 
-		self::addDatabase( 'default', $dsn, $username, $password, $frozen, $partialBeans );
+		self::addDatabase( 'default', $dsn, $username, $password, $frozen );
 		self::selectDatabase( 'default' );
 
 		return self::$toolbox;
@@ -324,7 +324,7 @@ class Facade
 	 *
 	 * @return void
 	 */
-	public static function addDatabase( $key, $dsn, $user = NULL, $pass = NULL, $frozen = FALSE, $partialBeans = FALSE )
+	public static function addDatabase( $key, $dsn, $user = NULL, $pass = NULL, $frozen = FALSE )
 	{
 		if ( isset( self::$toolboxes[$key] ) ) {
 			throw new RedException( 'A database has already been specified for this key.' );
@@ -356,10 +356,6 @@ class Facade
 		$writerClass = '\\RedBeanPHP\\QueryWriter\\'.$writers[$wkey];
 		$writer      = new $writerClass( $adapter );
 		$redbean     = new OODB( $writer, $frozen );
-		
-		if ( $partialBeans ) {
-			$redbean->getCurrentRepository()->usePartialBeans( $partialBeans );
-		}
 
 		self::$toolboxes[$key] = new ToolBox( $redbean, $adapter, $writer );
 	}
@@ -1540,9 +1536,7 @@ class Facade
 		self::$labelMaker         = new LabelMaker( self::$toolbox );
 		$helper                   = new SimpleModelHelper();
 		$helper->attachEventListeners( self::$redbean );
-		if (self::$redbean->getBeanHelper() == NULL) {
-			self::$redbean->setBeanHelper( new SimpleFacadeBeanHelper );
-		}
+		self::$redbean->setBeanHelper( new SimpleFacadeBeanHelper );
 		self::$duplicationManager = new DuplicationManager( self::$toolbox );
 		self::$tagManager         = new TagManager( self::$toolbox );
 		return $oldTools;

@@ -324,27 +324,24 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 	 */
 	private function parseJoin( $type )
 	{
-		if ( strpos($this->withSql, '@joined.' ) === FALSE ) {
-			return '';
-		}
-		
-		$joinSql = ' ';
+		$joinSql = '';
 		$joins = array();
-		$writer   = $this->beanHelper->getToolBox()->getWriter();
-		$oldParts = $parts = explode( '@joined.', $this->withSql );
-		array_shift( $parts );
-		foreach($parts as $part) {
-			$explosion = explode( '.', $part );
-			$joinInfo  = reset( $explosion );
-			//Dont join more than once..
-			if ( !isset( $joins[$joinInfo] ) ) {
-				$joins[ $joinInfo ] = TRUE;
-				$joinSql  .= $writer->writeJoin( $type, $joinInfo, 'LEFT' );
+		if ( strpos($this->withSql, '@joined.' ) !== FALSE ) {
+			$writer   = $this->beanHelper->getToolBox()->getWriter();
+			$oldParts = $parts = explode( '@joined.', $this->withSql );
+			array_shift( $parts );
+			foreach($parts as $part) {
+				$explosion = explode( '.', $part );
+				$joinInfo  = array_shift( $explosion );
+				//Dont join more than once..
+				if ( !isset( $joins[$joinInfo] ) ) {
+					$joins[ $joinInfo ] = TRUE;
+					$joinSql  .= $writer->writeJoin( $type, $joinInfo, 'LEFT' );
+				}
 			}
+			$this->withSql = implode( '', $oldParts );
+			$joinSql      .= ' WHERE ';
 		}
-		$this->withSql = implode( '', $oldParts );
-		$joinSql      .= ' WHERE ';
-		
 		return $joinSql;
 	}
 
@@ -389,6 +386,8 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 			$assocManager     = $redbean->getAssociationManager();
 			$beans            = $assocManager->related( $this, $type, $this->withSql, $this->withParams );
 		}
+		$this->withSql    = '';
+		$this->withParams = array();
 		return $beans;
 	}
 
@@ -431,20 +430,23 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		}
 		$beans = array();
 		if ( $this->getID() ) {
-			reset( $this->withParams );
+			$firstKey = NULL;
+			if ( count( $this->withParams ) > 0 ) {
+				reset( $this->withParams );
+				$firstKey = key( $this->withParams );
+			}
 			$joinSql = $this->parseJoin( $type );
-			$firstKey = count( $this->withParams ) > 0
-				? key( $this->withParams )
-				: 0;
-			if ( is_int( $firstKey ) ) {
-				$bindings = array_merge( array( $this->getID() ), $this->withParams );
-				$beans = $redbean->find( $type, array(), "{$joinSql} $myFieldLink = ? " . $this->withSql, $bindings );
-			} else {
+			if ( !is_numeric( $firstKey ) || $firstKey === NULL ) {
 				$bindings           = $this->withParams;
 				$bindings[':slot0'] = $this->getID();
-				$beans = $redbean->find( $type, array(), "{$joinSql} $myFieldLink = :slot0 " . $this->withSql, $bindings );
+				$beans = $redbean->find( $type, array(), " {$joinSql} $myFieldLink = :slot0 " . $this->withSql, $bindings );
+			} else {
+				$bindings = array_merge( array( $this->getID() ), $this->withParams );
+				$beans = $redbean->find( $type, array(), " {$joinSql} $myFieldLink = ? " . $this->withSql, $bindings );
 			}
 		}
+		$this->withSql    = '';
+		$this->withParams = array();
 		foreach ( $beans as $beanFromList ) {
 			$beanFromList->__info['sys.parentcache.' . $parentField] = $this;
 		}
@@ -535,21 +537,14 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		if ( is_string( $selection ) ) {
 			$selection = explode( ',', $selection );
 		}
-		if ( is_array( $selection ) ) {
-			if ( $notrim ) {
-				$selected = array_flip($selection);
-			} else {
-				$selected = array();
-				foreach ( $selection as $key => $select ) {
-					$selected[trim( $select )] = TRUE;
-				}
+		if ( !$notrim && is_array( $selection ) ) {
+			foreach ( $selection as $key => $selected ) {
+				$selection[$key] = trim( $selected );
 			}
-		} else {
-			$selected = FALSE;
 		}
 		foreach ( $array as $key => $value ) {
 			if ( $key != '__info' ) {
-				if ( !$selected || isset( $selected[$key] ) ) {
+				if ( !$selection || ( $selection && in_array( $key, $selection ) ) ) {
 					if ( is_array($value ) ) {
 						if ( isset( $value['_type'] ) ) {
 							$bean = $this->beanHelper->getToolbox()->getRedBean()->dispense( $value['_type'] );
@@ -783,7 +778,13 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		$shadowKey = 'sys.shadow.'.$property;
 		if ( isset( $this->__info[ $shadowKey ] ) ) unset( $this->__info[$shadowKey] );
 		//also clear modifiers
-		$this->clearModifiers();
+		$this->withSql    = '';
+		$this->withParams = array();
+		$this->aliasName  = NULL;
+		$this->fetchType  = NULL;
+		$this->noLoad     = FALSE;
+		$this->all        = FALSE;
+		$this->via        = NULL;
 		return;
 	}
 
@@ -1085,46 +1086,40 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		}
 		$fieldLink      = $property . '_id';
 		$exists         = isset( $this->properties[$property] );
-
 		//If not exists and no field link and no list, bail out.
 		if ( !$exists && !isset($this->$fieldLink) && (!$isOwn && !$isShared )) {
-			$this->clearModifiers();
-			/**
-			 * Github issue:
-			 * Remove $NULL to directly return NULL #625
-			 * @@ -1097,8 +1097,7 @@ public function &__get( $property )
-			 *		$this->all        = FALSE;
-			 *		$this->via        = NULL;
-			 *
-			 * - $NULL = NULL;
-			 * - return $NULL;
-			 * + return NULL;
-			 *
-			 * leads to regression:
-			 * PHP Stack trace:
-			 * PHP 1. {main}() testje.php:0
-			 * PHP 2. RedBeanPHP\OODBBean->__get() testje.php:22
-			 * Notice: Only variable references should be returned by reference in rb.php on line 2529
-			 */
+
+			$this->withSql    = '';
+			$this->withParams = array();
+			$this->aliasName  = NULL;
+			$this->fetchType  = NULL;
+			$this->noLoad     = FALSE;
+			$this->all        = FALSE;
+			$this->via        = NULL;
+
 			$NULL = NULL;
 			return $NULL;
 		}
-
 		$hasAlias       = (!is_null($this->aliasName));
 		$differentAlias = ($hasAlias && $isOwn && isset($this->__info['sys.alias.'.$listName])) ?
-									($this->__info['sys.alias.'.$listName] !== $this->aliasName) : FALSE;
+								($this->__info['sys.alias.'.$listName] !== $this->aliasName) : FALSE;
 		$hasSQL         = ($this->withSql !== '' || $this->via !== NULL);
 		$hasAll         = (boolean) ($this->all);
 
 		//If exists and no list or exits and list not changed, bail out.
-		if ( $exists && ((!$isOwn && !$isShared ) || (!$hasSQL && !$differentAlias && !$hasAll)) ) {
-			$this->clearModifiers();
+		if ( $exists && ((!$isOwn && !$isShared ) ||  (!$hasSQL && !$differentAlias && !$hasAll)) ) {
+			$this->withSql    = '';
+			$this->withParams = array();
+			$this->aliasName  = NULL;
+			$this->fetchType  = NULL;
+			$this->noLoad     = FALSE;
+			$this->all        = FALSE;
+			$this->via        = NULL;
 			return $this->properties[$property];
 		}
 
 		list( $redbean, , , $toolbox ) = $this->beanHelper->getExtractedToolbox();
 
-		//If it's another bean, then we load it and return
 		if ( isset( $this->$fieldLink ) ) {
 			$this->__info['tainted'] = TRUE;
 			if ( isset( $this->__info["sys.parentcache.$property"] ) ) {
@@ -1152,10 +1147,16 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 				}
 			}
 			$this->properties[$property] = $bean;
-			$this->clearModifiers();
+			$this->withSql               = '';
+			$this->withParams            = array();
+			$this->aliasName             = NULL;
+			$this->fetchType             = NULL;
+			$this->noLoad                = FALSE;
+			$this->all                   = FALSE;
+			$this->via                   = NULL;
 			return $this->properties[$property];
-		}
 
+		}
 		//Implicit: elseif ( $isOwn || $isShared ) {
 		if ( $this->noLoad ) {
 			$beans = array();
@@ -1164,13 +1165,19 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		} else {
 			$beans = $this->getSharedList( lcfirst( substr( $property, 6 ) ), $redbean, $toolbox );
 		}
+
 		$this->properties[$property]          = $beans;
 		$this->__info["sys.shadow.$property"] = $beans;
 		$this->__info['tainted']              = TRUE;
-		
-		$this->clearModifiers();
-		return $this->properties[$property];
+		$this->withSql    = '';
+		$this->withParams = array();
+		$this->aliasName  = NULL;
+		$this->fetchType  = NULL;
+		$this->noLoad     = FALSE;
+		$this->all        = FALSE;
+		$this->via        = NULL;
 
+		return $this->properties[$property];
 	}
 
 	/**
@@ -1231,7 +1238,13 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 			}
 		}
 
-		$this->clearModifiers();
+		$this->withSql    = '';
+		$this->withParams = array();
+		$this->aliasName  = NULL;
+		$this->fetchType  = NULL;
+		$this->noLoad     = FALSE;
+		$this->all        = FALSE;
+		$this->via        = NULL;
 
 		$this->__info['tainted'] = TRUE;
 		$this->__info['changed'] = TRUE;
@@ -1405,7 +1418,7 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 	 */
 	public function __call( $method, $args )
 	{
-		if ( empty( $this->__info['model'] ) ) {
+		if (!isset($this->__info['model']) || !$this->__info['model']) {
 			return NULL;
 		}
 		
@@ -2116,18 +2129,19 @@ class OODBBean implements\IteratorAggregate,\ArrayAccess,\Countable,Jsonable
 		}
 		$count = 0;
 		if ( $this->getID() ) {
-			reset( $this->withParams );
+			$firstKey = NULL;
+			if ( count( $this->withParams ) > 0 ) {
+				reset( $this->withParams );
+				$firstKey = key( $this->withParams );
+			}
 			$joinSql = $this->parseJoin( $type );
-			$firstKey = count( $this->withParams ) > 0
-				? key( $this->withParams )
-				: 0;
-			if ( is_int( $firstKey ) ) {
-				$bindings = array_merge( array( $this->getID() ), $this->withParams );
-				$count    = $this->beanHelper->getToolbox()->getWriter()->queryRecordCount( $type, array(), "{$joinSql} $myFieldLink = ? " . $this->withSql, $bindings );
+			if ( !is_numeric( $firstKey ) || $firstKey === NULL ) {
+					$bindings           = $this->withParams;
+					$bindings[':slot0'] = $this->getID();
+					$count              = $this->beanHelper->getToolbox()->getWriter()->queryRecordCount( $type, array(), " {$joinSql} $myFieldLink = :slot0 " . $this->withSql, $bindings );
 			} else {
-				$bindings           = $this->withParams;
-				$bindings[':slot0'] = $this->getID();
-				$count              = $this->beanHelper->getToolbox()->getWriter()->queryRecordCount( $type, array(), "{$joinSql} $myFieldLink = :slot0 " . $this->withSql, $bindings );
+					$bindings = array_merge( array( $this->getID() ), $this->withParams );
+					$count    = $this->beanHelper->getToolbox()->getWriter()->queryRecordCount( $type, array(), " {$joinSql} $myFieldLink = ? " . $this->withSql, $bindings );
 			}
 		}
 		$this->clearModifiers();

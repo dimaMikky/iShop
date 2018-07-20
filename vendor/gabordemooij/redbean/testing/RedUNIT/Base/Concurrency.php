@@ -41,9 +41,7 @@ class Concurrency extends Base
 	 */
 	public function prepare()
 	{
-		try{
-			R::close();
-		} catch( \Exception $e ) {}
+		R::close();
 	}
 
 	/**
