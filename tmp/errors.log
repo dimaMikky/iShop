@@ -844,5 +844,43 @@
 --------------
 [2018-07-14 22:54:05] Error Message: syntax error, unexpected 'public' (T_PUBLIC) | File: C:\OSPanel\domains\ishop.loc\app\models\Cart.php | Line: 45
 --------------
+<<<<<<< HEAD
 [2018-07-16 09:51:02] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+=======
+[2018-07-16 18:46:48] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-16 19:12:50] Error Message: Контроллер app\controllers\SearchController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-16 19:13:21] Error Message: Контроллер app\controllers\SearchController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-16 19:13:26] Error Message: Контроллер app\controllers\SearchController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-16 19:13:30] Error Message: Контроллер app\controllers\SearchController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-16 19:21:48] Error Message: Метод app\controllers\SearchController::indexAction не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 33
+--------------
+[2018-07-16 19:24:31] Error Message: Метод app\controllers\SearchController::indexAction не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 33
+--------------
+[2018-07-16 20:02:22] Error Message: Контроллер app\controllers\CategoryController не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 36
+--------------
+[2018-07-16 20:38:13] Error Message: На найден вид C:\OSPanel\domains\ishop.loc/app/views/Category/view.php | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\base\View.php | Line: 40
+--------------
+[2018-07-16 20:40:16] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\app\controllers\CategoryController.php | Line: 11
+--------------
+[2018-07-16 20:44:35] Error Message: Страница не найдена | File: C:\OSPanel\domains\ishop.loc\app\controllers\CategoryController.php | Line: 13
+--------------
+[2018-07-16 20:44:37] Error Message: Class 'app\models\App' not found | File: C:\OSPanel\domains\ishop.loc\app\models\Category.php | Line: 8
+--------------
+[2018-07-16 20:45:59] Error Message: Class 'vendor\ishop\core\libs\App' not found | File: C:\OSPanel\domains\ishop.loc\app\models\Category.php | Line: 10
+--------------
+[2018-07-16 20:59:44] Error Message: Метод app\controllers\CategoryController::indexAction не найден | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\Router.php | Line: 33
+--------------
+[2018-07-16 21:05:41] Error Message: На найден вид C:\OSPanel\domains\ishop.loc/app/views/Category/view.php | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\base\View.php | Line: 40
+--------------
+[2018-07-16 22:10:29] Error Message: syntax error, unexpected '$breadcrumbs' (T_VARIABLE) | File: C:\OSPanel\domains\ishop.loc\app\controllers\CategoryController.php | Line: 22
+--------------
+[2018-07-16 22:10:44] Error Message: Class 'app\controllers\Pagination' not found | File: C:\OSPanel\domains\ishop.loc\app\controllers\CategoryController.php | Line: 20
+--------------
+[2018-07-16 22:13:42] Error Message: syntax error, unexpected 'return' (T_RETURN) | File: C:\OSPanel\domains\ishop.loc\vendor\ishop\core\libs\Pagination.php | Line: 52
+>>>>>>> 9e5080ca90b61cd3a991a9f813aaa6d5174ee9d6
 --------------
