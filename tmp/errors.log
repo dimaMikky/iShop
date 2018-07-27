@@ -900,3 +900,7 @@
 --------------
 [2018-07-20 14:18:30] Error Message: Контроллер app\controllers\DsfdsController не найден | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 36
 --------------
+[2018-07-20 20:59:42] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------
+[2018-07-26 14:18:41] Error Message: Страница не найдена | File: C:\OpenServer\domains\ishop\vendor\ishop\core\Router.php | Line: 39
+--------------

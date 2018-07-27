@@ -16,7 +16,6 @@ class UserController extends AppController {
                 $_SESSION['form_data'] = $data;
             }else{
                 $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
-                // Нужна ли авторизация пользователя сразу после регистрации пользователя?
                 if($user->save('user')){
                     $_SESSION['success'] = 'Пользователь зарегистрирован';
                 }else{
